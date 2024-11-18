@@ -27,7 +27,6 @@ public class CalculatorController {
 
     @PostMapping(path = "/calc")
     public CreditDto calculateOffersFull(@RequestBody ScoringDataDto scoringDataDto){
-        CreditDto cred = new CreditDto();
-        return cred;
+        return calculatorService.completeScore(scoringDataDto);
     }
 }
