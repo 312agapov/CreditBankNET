@@ -1,6 +1,7 @@
 package ru.agapovla.Calculator.service;
 
 import org.springframework.stereotype.Service;
+import ru.agapovla.Calculator.constants.Constants;
 import ru.agapovla.Calculator.dto.*;
 import ru.agapovla.Calculator.enums.EmploymentStatus;
 import ru.agapovla.Calculator.enums.Gender;
@@ -162,7 +163,7 @@ public class CalculatorService {
             overAllTerm = overAllTerm.subtract(BigDecimal.valueOf(3));
         }
         if(!scoringDataDto.getGender().equals(Gender.FEMALE) && !scoringDataDto.getGender().equals(Gender.MALE)){
-            overAllTerm = overAllTerm.add(BigDecimal.valueOf(10));
+            overAllTerm = overAllTerm.add(Constants.NON_BINARY_PERCENT);
         }
         if(scoringDataDto.getEmployment().getWorkExperienceTotal() < 18
                 || scoringDataDto.getEmployment().getWorkExperienceCurrent() < 3){
