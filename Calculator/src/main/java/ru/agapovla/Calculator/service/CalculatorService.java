@@ -1,16 +1,15 @@
 package ru.agapovla.Calculator.service;
 
 import org.springframework.stereotype.Service;
-import ru.agapovla.Calculator.dto.CreditDto;
-import ru.agapovla.Calculator.dto.LoanOfferDto;
-import ru.agapovla.Calculator.dto.LoanStatementRequestDto;
-import ru.agapovla.Calculator.dto.ScoringDataDto;
+import ru.agapovla.Calculator.dto.*;
 import ru.agapovla.Calculator.enums.EmploymentStatus;
 import ru.agapovla.Calculator.enums.Gender;
 import ru.agapovla.Calculator.enums.MaritalStatus;
 import ru.agapovla.Calculator.enums.Position;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -96,6 +95,31 @@ public class CalculatorService {
         return baseRate;
     }
 
+    private List<PaymentScheduleElementDto> createPaymentSchedule(BigDecimal amount, BigDecimal rate, Integer term,
+                                                                  BigDecimal monthlyPayment) {
+        List<PaymentScheduleElementDto> paymentSchedule = new ArrayList<>();
+        BigDecimal remainingDebt = amount;
+        BigDecimal monthlyRate = rate.divide(BigDecimal.valueOf(12), MathContext.DECIMAL32);
+        for (int i = 1; i <= term; i++) {
+            BigDecimal interestPayment = remainingDebt.multiply(monthlyRate).setScale(2, RoundingMode.HALF_UP);
+            BigDecimal debtPayment = monthlyPayment.subtract(interestPayment).setScale(2, RoundingMode.HALF_UP);
+            if (i == term) {
+                debtPayment = remainingDebt;
+                monthlyPayment = interestPayment.add(debtPayment);
+            }
+            remainingDebt = remainingDebt.subtract(debtPayment).setScale(2, RoundingMode.HALF_UP);
+            PaymentScheduleElementDto element = new PaymentScheduleElementDto();
+            element.setNumber(i);
+            element.setDate(LocalDate.now().plusMonths(i));
+            element.setTotalPayment(monthlyPayment);
+            element.setInterestPayment(interestPayment);
+            element.setDebtPayment(debtPayment);
+            element.setRemainingDebt(remainingDebt);
+            paymentSchedule.add(element);
+        }
+        return paymentSchedule;
+    }
+
     public CreditDto completeScore(ScoringDataDto scoringDataDto){
         BigDecimal overAllTerm = BigDecimal.valueOf(1.1);
         if(scoringDataDto.getEmployment().getEmploymentStatus().equals(EmploymentStatus.UNEMPLOYED)){
@@ -161,6 +185,11 @@ public class CalculatorService {
                 scoringDataDto.getIsSalaryClient()));
         finalCreditOffer.setIsInsuranceEnabled(scoringDataDto.getIsInsuranceEnabled());
         finalCreditOffer.setIsSalaryClient(scoringDataDto.getIsSalaryClient());
-        finalCreditOffer.setPaymentSchedule(); //TODO:
+        finalCreditOffer.setPaymentSchedule(createPaymentSchedule(
+                scoringDataDto.getAmount(),
+                finalCreditOffer.getRate(),
+                scoringDataDto.getTerm(),
+                finalCreditOffer.getMonthlyPayment()));
+        return finalCreditOffer;
     }
 }
