@@ -152,7 +152,7 @@ public class CalculatorService {
 
     public CreditDto completeScore(ScoringDataDto scoringDataDto) {
         logger.info("Начато создание итогового скоринга: scoringDataDto: {}", scoringDataDto);
-        BigDecimal overAllTerm = BigDecimal.valueOf(1.1);
+        BigDecimal overAllTerm = BigDecimal.valueOf(1);
         try {
             if (scoringDataDto.getEmployment().getEmploymentStatus().equals(EmploymentStatus.UNEMPLOYED)) {
                 throw new IllegalArgumentException("Отказ по трудоустройству!");
@@ -174,7 +174,7 @@ public class CalculatorService {
             if (scoringDataDto.getAmount().compareTo(scoringDataDto.getEmployment().getSalary().multiply(BigDecimal.valueOf(24))) >= 0) {
                 throw new IllegalArgumentException("Отказ по сумме кредита!");
             }
-            if (scoringDataDto.getMaritalStatus().equals(MaritalStatus.MARRIED)) {
+            if (scoringDataDto.getMaritalStatus() != null && scoringDataDto.getMaritalStatus().equals(MaritalStatus.MARRIED)) {
                 overAllTerm = overAllTerm.subtract(BigDecimal.valueOf(3));
             } else {
                 overAllTerm = overAllTerm.add(BigDecimal.valueOf(1));
@@ -183,26 +183,28 @@ public class CalculatorService {
                     && !scoringDataDto.getBirthdate().isBefore(LocalDate.now().minusYears(65))) {
                 throw new IllegalArgumentException("Отказ по возрасту!");
             }
-            if (scoringDataDto.getGender().equals(Gender.FEMALE)
+            if (scoringDataDto.getGender() != null && scoringDataDto.getGender().equals(Gender.FEMALE)
                     && scoringDataDto.getBirthdate().isBefore(LocalDate.now().minusYears(32))
                     && !scoringDataDto.getBirthdate().isAfter(LocalDate.now().minusYears(60))) {
                 overAllTerm = overAllTerm.subtract(BigDecimal.valueOf(3));
             }
-            if (scoringDataDto.getGender().equals(Gender.MALE)
+            if (scoringDataDto.getGender() != null && scoringDataDto.getGender().equals(Gender.MALE)
                     && scoringDataDto.getBirthdate().isBefore(LocalDate.now().minusYears(30))
                     && !scoringDataDto.getBirthdate().isAfter(LocalDate.now().minusYears(55))) {
                 overAllTerm = overAllTerm.subtract(BigDecimal.valueOf(3));
             }
-            if (!scoringDataDto.getGender().equals(Gender.FEMALE) && !scoringDataDto.getGender().equals(Gender.MALE)) {
+            if (scoringDataDto.getGender() != null && !scoringDataDto.getGender().equals(Gender.FEMALE)
+                    && !scoringDataDto.getGender().equals(Gender.MALE)) {
                 overAllTerm = overAllTerm.add(Constants.NON_BINARY_PERCENT);
             }
             if (scoringDataDto.getEmployment().getWorkExperienceTotal() < 18
                     || scoringDataDto.getEmployment().getWorkExperienceCurrent() < 3) {
                 throw new IllegalArgumentException("Отказ по стажу!");
             }
+            overAllTerm = overAllTerm.add(BigDecimal.valueOf(scoringDataDto.getTerm()));
             CreditDto finalCreditOffer = new CreditDto();
             finalCreditOffer.setAmount(scoringDataDto.getAmount());
-            finalCreditOffer.setTerm(overAllTerm.intValue());
+            finalCreditOffer.setTerm(overAllTerm.setScale(0, RoundingMode.HALF_UP).intValue());
             finalCreditOffer.setMonthlyPayment(calculateMonthlyPayment(
                     scoringDataDto.getAmount(),
                     scoringDataDto.getTerm(),
@@ -228,6 +230,5 @@ public class CalculatorService {
             logger.error("Ошибка в итоговом скоринге: {}", e.getMessage());
             throw e;
         }
-
     }
 }
