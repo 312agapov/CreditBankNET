@@ -4,13 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a26343c-1ee1-4cf1-ac45-971061d29ee3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+    <list default="true" id="6a26343c-1ee1-4cf1-ac45-971061d29ee3" name="Changes" comment="2.1 Инициализировать Spring-Boot приложение deal&#10;- added dto's">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/DealApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/dto/CreditDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/dto/EmailMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/dto/EmploymentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/dto/FinishRegistrationRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/dto/LoanOfferDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/dto/LoanStatementRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/dto/PaymentScheduleElementDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/dto/ScoringDataDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/dto/StatementStatusHistoryDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/enums/ChangeType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/enums/EmploymentStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/enums/Gender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/enums/MaritalStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/enums/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/enums/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/agapovla/Deal/enums/Theme.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +53,18 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
-    "kotlin-language-version-configured": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "feature/deal/dto__definition",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/progs/CreditBankNET/Deal/src/main/java/ru/agapovla/Deal"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\progs\CreditBankNET\Deal\src\main\java\ru\agapovla\Deal" />
+      <recent name="D:\progs\CreditBankNET\Deal\src\main\resources" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -57,6 +81,20 @@
       <option name="presentableId" value="Default" />
       <updated>1733222262286</updated>
     </task>
+    <task id="LOCAL-00001" summary="init Deal MS">
+      <option name="closed" value="true" />
+      <created>1733222357034</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733222357034</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init Deal MS" />
+    <MESSAGE value="2.1 Инициализировать Spring-Boot приложение deal&#10;- added dto's" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.1 Инициализировать Spring-Boot приложение deal&#10;- added dto's" />
   </component>
 </project>
