@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.agapovla.Deal.enums.EmploymentStatus;
-import ru.agapovla.Deal.enums.Position;
+import ru.agapovla.Deal.enums.EmploymentPosition;
 
 import java.math.BigDecimal;
 
@@ -17,7 +17,7 @@ public class EmploymentDto {
     public EmploymentStatus employmentStatus;
     public String employerINN;
     public BigDecimal salary;
-    public Position position;
+    public EmploymentPosition employmentPosition;
     public Integer workExperienceTotal;
     public Integer workExperienceCurrent;
 }

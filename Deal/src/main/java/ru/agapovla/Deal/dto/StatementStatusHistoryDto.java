@@ -7,6 +7,7 @@ import lombok.Setter;
 import ru.agapovla.Deal.enums.ChangeType;
 import ru.agapovla.Deal.enums.Status;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,6 +16,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class StatementStatusHistoryDto {
     public Status status;
-    public LocalDateTime time;
+    public Timestamp time;
     public ChangeType changeType;
 }
