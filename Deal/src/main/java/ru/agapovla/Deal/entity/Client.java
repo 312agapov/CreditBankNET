@@ -19,21 +19,21 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
-    private UUID client_id;
+    private UUID clientId;
 
-    private String first_name;
-    private String last_name;
-    private String middle_name;
-    private LocalDate birth_date;
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private LocalDate birthDate;
     private String email;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Enumerated(EnumType.STRING)
-    private MaritalStatus marital_Status;
+    private MaritalStatus maritalStatus;
 
-    private Integer dependent_amount;
+    private Integer dependentAmount;
 
     @Type(JsonBinaryType.class)
     @Column(columnDefinition = "jsonb")
@@ -43,6 +43,6 @@ public class Client {
     @Column(columnDefinition = "jsonb")
     private Employment employment;
 
-    private Integer account_number;
+    private Integer accountNumber;
 
 }

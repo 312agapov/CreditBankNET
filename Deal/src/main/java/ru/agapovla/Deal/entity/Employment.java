@@ -11,11 +11,11 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Employment {
-    private UUID employment_id;
-    private EmploymentStatus employment_status;
-    private String employer_inn;
+    private UUID employmentId;
+    private EmploymentStatus employmentStatus;
+    private String employerInn;
     private BigDecimal salary;
     private EmploymentPosition employmentPosition;
-    private Integer work_experience_total;
-    private Integer work_experience_current;
+    private Integer work_experienceTotal;
+    private Integer work_experienceCurrent;
 }

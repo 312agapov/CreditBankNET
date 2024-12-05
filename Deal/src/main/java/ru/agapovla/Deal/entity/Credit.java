@@ -21,19 +21,19 @@ public class Credit {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
-    private UUID credit_id;
+    private UUID creditId;
 
     private BigDecimal amount;
     private Integer term;
-    private BigDecimal monthly_payment;
+    private BigDecimal monthlyPayment;
     private BigDecimal rate;
     private BigDecimal psk;
 
     @Type(JsonBinaryType.class)
     @Column(columnDefinition = "jsonb")
-    private PaymentScheduleElementDto payment_schedule;
+    private PaymentScheduleElementDto paymentSchedule;
 
-    private Boolean insurance_enabled;
-    private Boolean is_salary_client;
-    private CreditStatus credit_status;
+    private Boolean insuranceEnabled;
+    private Boolean isSalaryClient;
+    private CreditStatus creditStatus;
 }

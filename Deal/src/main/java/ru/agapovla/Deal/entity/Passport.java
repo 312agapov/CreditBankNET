@@ -9,9 +9,9 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Passport {
-    private UUID passport_id;
+    private UUID passportId;
     private String series;
     private String number;
-    private String issue_branch;
-    private LocalDate issue_date;
+    private String issueBranch;
+    private LocalDate issueDate;
 }

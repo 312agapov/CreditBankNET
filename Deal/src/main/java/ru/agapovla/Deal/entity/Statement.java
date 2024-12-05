@@ -18,31 +18,31 @@ public class Statement {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
-    private UUID statement_id;
+    private UUID statementId;
 
     @Enumerated(EnumType.STRING)
-    private ApplicationStatus marital_Status;
+    private ApplicationStatus maritalStatus;
 
-    private Timestamp creation_date;
-
-    @Type(JsonBinaryType.class)
-    @Column(columnDefinition = "jsonb")
-    private String applied_offer;
-
-    private Timestamp sign_date;
-
-    private Integer ses_code;
+    private Timestamp creationDate;
 
     @Type(JsonBinaryType.class)
     @Column(columnDefinition = "jsonb")
-    private StatementStatusHistoryDto status_history;
+    private String appliedOffer;
+
+    private Timestamp signDate;
+
+    private Integer sesCode;
+
+    @Type(JsonBinaryType.class)
+    @Column(columnDefinition = "jsonb")
+    private StatementStatusHistoryDto statusHistory;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private UUID client_id;
+    private UUID clientId;
 
     @OneToOne
     @JoinColumn(name = "credit_id")
-    private UUID credit_id;
+    private UUID creditId;
 
 }
